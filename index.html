@@ -14,7 +14,12 @@
         if (details) {
           let { format, text, bytes } = details;
           result_format.textContent = format;
-          result_text.textContent = text;
+          if (/^[a-z0-9A-Z]+:\/\//.test(text)) {
+            result_text.innerHTML = `<a href="${text}" target="_blank">${text}</a>`;
+          }
+          else {
+            result_text.textContent = text;
+          }
           result_bytes.textContent = bytes ?
             [].map.call(bytes, b => b.toString(16).padStart(2, '0')).join(' ') :
             ''
