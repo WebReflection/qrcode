@@ -15,7 +15,10 @@
           let { format, text, bytes } = details;
           result_format.textContent = format;
           result_text.textContent = text;
-          result_bytes.textContent = [].map.call(bytes, b => b.toString(16).padStart(2, '0')).join(' ');
+          result_bytes.textContent = bytes ?
+            [].map.call(bytes, b => b.toString(16).padStart(2, '0')).join(' ') :
+            ''
+          ;
         }
         else {
           result_format.textContent = '';

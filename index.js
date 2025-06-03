@@ -14,25 +14,15 @@ export const scan = async ({
       document.createElement('button'),
       { textContent: 'CLOSE' }
     )),
-    stop = () => {
-      try { reader.stopAsyncDecode() }
-      catch (_) {}
-    },
     listeners = new Listeners([
       ['loadedmetadata', async function detect() {
         try {
           const result = await reader.decodeFromVideoElement(video);
-          if (result?.rawBytes) {
-            resolve({
-              format: BarcodeFormat[result.format],
-              text: result.text,
-              bytes: result.rawBytes,
-            });
-          }
-          else {
-            stop();
-            timer = setTimeout(detect, 250);
-          }
+          resolve({
+            format: BarcodeFormat[result.format],
+            text: result.text,
+            bytes: result.rawBytes,
+          });
         }
         catch (error) {
           reject(error);
@@ -43,14 +33,13 @@ export const scan = async ({
       ['pause', reject]
     ]).add(video, { once: true }),
     done = result => {
-      stop();
-      clearTimeout(timer);
+      try { reader.stopAsyncDecode() }
+      catch (_) {}
       listeners.remove(video);
       video.remove();
       dialog.close();
       return result;
-    },
-    timer = 0
+    }
   ;
 
   dialog.id = 'qrcode-dialog';
