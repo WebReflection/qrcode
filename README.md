@@ -5,6 +5,7 @@ Based on [@zxing/library](https://github.com/zxing-js/library), this module expo
 The *facingMode* property is [described on MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/facingMode#value).
 
 ```js
+// pre-bundled file @ https://cdn.jsdelivr.net/npm/@webreflection/qrcode/dist.js
 import { scan } from '@webreflection/qrcode';
 
 const result = await scan();
