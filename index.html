@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Scanner</title>
+  <script type="module">
+    import { scan } from './dist.js';
+
+    document.querySelector('button').addEventListener('click', async ({ currentTarget }) => {
+      currentTarget.disabled = true;
+      try {
+        const details = await scan();
+        if (details) {
+          let { format, text, bytes } = details;
+          result_format.textContent = format;
+          result_text.textContent = text;
+          result_bytes.textContent = [].map.call(bytes, b => b.toString(16).padStart(2, '0')).join(' ');
+        }
+        else {
+          result_format.textContent = '';
+          result_text.textContent = 'cancelled';
+          result_bytes.textContent = '';
+        }
+      }
+      catch (error) {
+        result_format.textContent = '';
+        result_text.textContent = error.message || error;
+        result_bytes.textContent = '';
+        console.error(error);
+      }
+      finally {
+        currentTarget.disabled = false;
+      }
+    });
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #result_format {
+      font-weight: bolder;
+    }
+    #result_text {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    #result_bytes {
+      font-weight: lighter
+    }
+  </style>
+</head>
+<body>
+  <button>SCAN QR CODE</button>
+  <hr>
+  <p id="result_format"></p>
+  <p id="result_text"></p>
+  <p id="result_bytes"></p>
+</body>
+</html>

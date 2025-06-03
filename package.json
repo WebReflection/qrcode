@@ -1,0 +1,60 @@
+{
+  "name": "@webreflection/qrcode",
+  "version": "0.0.0",
+  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./listeners": "./listeners.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "rollup --config rollup.js"
+  },
+  "keywords": [
+    "reader",
+    "decode",
+    "scanner",
+    "barcode",
+    "qr-code",
+    "barcode 1d",
+    "barcode 2d",
+    "zxing"
+  ],
+  "authors": [
+    {
+      "name": "Andrea Giammarchi"
+    },
+    {
+      "name": "Adrian Toșcă"
+    },
+    {
+      "name": "David Werth",
+      "email": "werth.david@gmail.com"
+    },
+    {
+      "name": "Luiz Barni",
+      "email": "machado@odahcam.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "description": "A minimalistic QR Code Scanner based on @zxing/library",
+  "dependencies": {
+    "@zxing/library": "^0.21.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.41.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebReflection/qrcode.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/WebReflection/qrcode/issues"
+  },
+  "homepage": "https://github.com/WebReflection/qrcode#readme"
+}
