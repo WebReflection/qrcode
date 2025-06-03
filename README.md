@@ -2,6 +2,8 @@
 
 Based on [@zxing/library](https://github.com/zxing-js/library), this module exports a `scan({ facingMode = 'environment' })` async utility that helps users finding a QR Code and grab its result as data.
 
+**[Live Demo](https://webreflection.github.io/qrcode/)**
+
 The *facingMode* property is [described on MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/facingMode#value).
 
 ```js
