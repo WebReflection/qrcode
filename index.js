@@ -53,6 +53,7 @@ export const scan = async ({
     timer = 0
   ;
 
+  dialog.id = 'qrcode-dialog';
   dialog.style.cssText = 'padding:0;border-radius:16px';
   video.style.cssText = `margin:0;width:100%;object-fit:contain`;
   button.style.cssText = 'margin:0;width:100%;min-height:32px;border:0';
