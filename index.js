@@ -1,5 +1,32 @@
-import { BarcodeFormat, BrowserMultiFormatReader } from '@zxing/library';
+import {
+  BarcodeFormat,
+  BrowserMultiFormatReader,
+  BrowserQRCodeSvgWriter,
+} from '@zxing/library';
 import Listeners from './listeners.js';
+
+export const write = async (contents, {
+  width = 350,
+  height = 350,
+  canvas,
+  hints,
+} = {}) => {
+  const { promise, resolve } = Promise.withResolvers();
+  const svg = new BrowserQRCodeSvgWriter().write(contents, width, height, hints);
+  if (canvas) {
+    const image = new Image;
+    const src = btoa(new XMLSerializer().serializeToString(svg));
+    image.src = 'data:image/svg+xml;base64,' + src;
+    image.onload = () => {
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(image, 0, 0);
+      resolve(canvas);
+    };
+  }
+  else resolve(svg);
+  return promise;
+};
 
 export const scan = async ({
   facingMode = 'environment'

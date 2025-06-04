@@ -10,11 +10,18 @@ The *facingMode* property is [described on MDN](https://developer.mozilla.org/en
 
 ```js
 // pre-bundled file @ https://cdn.jsdelivr.net/npm/@webreflection/qrcode/dist.js
-import { scan } from '@webreflection/qrcode';
+import { scan, write } from '@webreflection/qrcode';
 
 const result = await scan();
 
 console.log(result);
+
+// regenerate the QR code (SVG)
+document.body.appendChild(
+  await write(result.text)
+  // pass { canvas } element to have
+  // an image drawn in it instead
+);
 ```
 
 The *LICENSE* is the same used in `@zxing/library` as I haven't added/done much else in here, just re-packaged and added minimalistic logic to help scanning.

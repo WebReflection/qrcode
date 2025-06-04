@@ -41,6 +41,7 @@
   "license": "Apache-2.0",
   "description": "A minimalistic QR Code Scanner based on @zxing/library",
   "dependencies": {
+    "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3"
   },
   "devDependencies": {

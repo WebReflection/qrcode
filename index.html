@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Scanner</title>
   <script type="module">
-    import { scan } from './dist.js';
+    import { scan, write } from './dist.js';
 
     document.querySelector('button').addEventListener('click', async ({ currentTarget }) => {
       currentTarget.disabled = true;
+      result_svg.replaceChildren();
       try {
         const details = await scan();
         if (details) {
@@ -24,6 +25,7 @@
             [].map.call(bytes, b => b.toString(16).padStart(2, '0')).join(' ') :
             ''
           ;
+          result_svg.appendChild(await write(text)).style.border = '4px solid lightgray';
         }
         else {
           result_format.textContent = '';
@@ -78,6 +80,7 @@
   <hr>
   <p id="result_format"></p>
   <p id="result_text"></p>
+  <p id="result_svg"></p>
   <p id="result_bytes"></p>
   <footer>Powered by <a target="_blank" href="https://github.com/WebReflection/qrcode">@webreflection/qrcode</a></footer>
 </body>
