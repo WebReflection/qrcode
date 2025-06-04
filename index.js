@@ -18,9 +18,11 @@ export const write = async (contents, {
     const src = btoa(new XMLSerializer().serializeToString(svg));
     image.src = 'data:image/svg+xml;base64,' + src;
     image.onload = () => {
+      const context = canvas.getContext('2d');
       canvas.width = width;
       canvas.height = height;
-      canvas.getContext('2d').drawImage(image, 0, 0);
+      context.clearRect(0, 0, width, height);
+      context.drawImage(image, 0, 0);
       resolve(canvas);
     };
   }

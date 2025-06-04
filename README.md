@@ -2,7 +2,7 @@
 
 <sup>**Social Media Photo by [Risto Kokkonen](https://unsplash.com/@risto_kokkonen) on [Unsplash](https://unsplash.com/)**</sup>
 
-Based on [@zxing/library](https://github.com/zxing-js/library), this module exports a `scan({ facingMode = 'environment' })` async utility that helps users finding a QR Code and grab its result as data.
+Based on [@zxing/library](https://github.com/zxing-js/library), this module exports a `scan({ facingMode = 'environment' })` or `write(text[, options])` async utilities that helps users finding a QR Code and grab its result as data, or show one on any page.
 
 **[Live Demo](https://webreflection.github.io/qrcode/)**
 
@@ -14,6 +14,7 @@ import { scan, write } from '@webreflection/qrcode';
 
 const result = await scan();
 
+// result.text, result.bytes, result.format
 console.log(result);
 
 // regenerate the QR code (SVG)
