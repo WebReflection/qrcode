@@ -38,6 +38,7 @@ export const scan = async ({
       listeners.remove(video);
       video.remove();
       dialog.close();
+      for (const track of stream.getTracks()) track.stop();
       return result;
     }
   ;
