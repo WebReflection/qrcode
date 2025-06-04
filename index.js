@@ -62,12 +62,12 @@ export const scan = async ({
       ['pause', reject]
     ]).add(video, { once: true }),
     done = result => {
+      listeners.remove(video);
       try { reader.stopAsyncDecode() }
       catch (_) {}
-      listeners.remove(video);
-      video.remove();
-      dialog.close();
       for (const track of stream.getTracks()) track.stop();
+      setTimeout(() => dialog.remove());
+      dialog.close();
       return result;
     }
   ;
