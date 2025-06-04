@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Scanner</title>
+  <style>
+    #qrcode-dialog {
+      transition: opacity 0.2s;
+      opacity: 0;
+    }
+    #qrcode-dialog[open] {
+      opacity: 1;
+    }
+  </style>
   <script type="module">
     import { scan, write } from './dist.js';
 
