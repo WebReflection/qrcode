@@ -1,5 +1,7 @@
 # @webreflection/qrcode
 
+<sup>**Social Media Photo by [Risto Kokkonen](https://unsplash.com/@risto_kokkonen) on [Unsplash](https://unsplash.com/)**</sup>
+
 Based on [@zxing/library](https://github.com/zxing-js/library), this module exports a `scan({ facingMode = 'environment' })` async utility that helps users finding a QR Code and grab its result as data.
 
 **[Live Demo](https://webreflection.github.io/qrcode/)**
